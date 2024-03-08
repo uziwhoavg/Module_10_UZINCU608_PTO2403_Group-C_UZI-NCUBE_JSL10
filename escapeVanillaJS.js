@@ -53,14 +53,3 @@ async function navigateLabyrinth(directions) {
     return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
 }
 
-
-// ### Debugging Tasks:
-
-// 1. **Correct the ID used in the event listener for Room 1**.
-// 2. **Use the correct element ID when displaying results for Room 1**.
-// 3. **Add missing keyword to the JS concepts set**.
-// 4. **Correct the function call to find the intersection of `jsConcepts` and `reactConcepts` for Room 2**.
-// 5. **Ensure asynchronous operations are handled correctly in Room 3, particularly awaiting the `navigateLabyrinth` function if needed**.
-// 6. **Adjust the `findMostRecentBook` function to correctly compare dates and find the most recent book**.
-// 7. **Fix the `findIntersection` function to correctly determine the intersection of two sets**.
-// 8. **Add the `await` keyword before `new Promise` in `navigateLabyrinth` to ensure the simulation of asynchronous operations works as intended**.
