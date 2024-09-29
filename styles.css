@@ -11,7 +11,7 @@ h2 {
 }
 
 button {
-    background-color: #cb4b16; /* Rusty red, reminiscent of archaeological sites */
+    background-color: #cb1673; /* Rusty red, reminiscent of archaeological sites */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -23,11 +23,11 @@ button {
 }
 
 button:hover {
-    background-color: #dc322f; /* Slightly brighter red for hover effect */
+    background-color: #5977ff; /* Slightly brighter red for hover effect */
 }
 
 p {
-    background-color: #eee8d5; /* Light sand color for paragraph backgrounds */
+    background-color: #ffd651; /* Light sand color for paragraph backgrounds */
     padding: 15px;
     border-left: 5px solid #b58900; /* Gold color for a touch of adventure */
 }

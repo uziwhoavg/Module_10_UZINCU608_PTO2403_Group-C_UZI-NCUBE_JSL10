@@ -1,55 +1,73 @@
+// Pending DOM content for completion
 document.addEventListener("DOMContentLoaded", () => {
-    // 🪲 Bug: Incorrect ID used for attaching the event listener
-    document.getElementById("solveRoom").addEventListener("click", () => {
+    // Solving room 1
+    document.getElementById("solveRoom1").addEventListener("click", () => {
+        // Fetch data from 'books.json'
         fetch('books.json') 
+            // Parse the JSON response
             .then(response => response.json())
+            // Process the retrieved data
             .then(books => {
+                // Find the most recent book
                 const mostRecentBook = findMostRecentBook(books);
-                // 🪲 Bug: Incorrect element ID
-                document.getElementById("resultRoom1").textContent = `The key to the next room is: ${mostRecentBook.title}`;
+                // Update the room result with the title of the most recent book
+                document.getElementById("room1Result").textContent = `The key to the next room is: ${mostRecentBook.title}`;
             });
     });
 
+    // Solving room 2
     document.getElementById("solveRoom2").addEventListener("click", () => {
-        const jsConcepts = new Set(['closure', 'scope', 'hoisting']);
-        // 🪲 Bug: What's mssing from JS concepts?
+        // Initialize JavaScript and React concept sets
+        const jsConcepts = new Set(['closure', 'scope', 'hoisting','async']);
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
-        // 🪲 Bug: Incorrect function call
-        const commonConcepts = findIntersection(jsConcepts, jsConcepts);
+        // Find the common concepts between JavaScript and React
+        const commonConcepts = findIntersection(jsConcepts, reactConcepts);
+        // Update the room result with the common concepts
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
-
-    // 🪲 Bug: Asynchronous function ?
-    document.getElementById("solveRoom3").addEventListener("click", () => {
-        fetch('directions.json') 
-            .then(response => response.json())
-            .then(directions => {
-                navigateLabyrinth(directions)
-                    .then(message => {
-                        // 🪲 Bug: Incorrect method
-                        document.getElementById("room3Result").innerHTML = message;
-                    });
-            });
+    
+    // Solving room 3
+    document.getElementById("solveRoom3").addEventListener("click", async () => {
+        try {
+            // Fetch data from 'directions.json'
+            const response = await fetch('directions.json');
+            // Parse the JSON response
+            const directions = await response.json();
+            // Navigate through the labyrinth asynchronously
+            const message = await navigateLabyrinth(directions);
+            // Update the room result with the completion message
+            document.getElementById("room3Result").textContent = message;
+        } catch (error) {
+            // Handle errors
+            console.error('Error:', error);
+            // Display an error message to the user or handle the error appropriately
+        }
     });
 });
 
+// Function to sort out newly added book from book domain
 function findMostRecentBook(books) {
-    // 🪲 Bug: Logic error
-    return books.reduce((mostRecent, book) => new Date(book.published) < new Date(mostRecent.published) ? book : mostRecent);
+    return books.reduce((mostRecent, book) => {
+        const mostRecentDate = new Date(mostRecent.published);
+        const currentDate = new Date(book.published);
+        // Sorting  dates by comparison of values to find the most recent book
+        return currentDate > mostRecentDate ? book : mostRecent;
+    });
 }
 
+// Function intersection between two sets
 function findIntersection(setA, setB) {
-    // 🪲 Bug: Incorrect logic
-    const intersection = new Set([...setA]);
-    return intersection;
+    return new Set([...setA].filter(item => setB.has(item)));
 }
 
+// Function sort the labyrinth asynchronously - clearing the bug
 async function navigateLabyrinth(directions) {
     for (let direction of directions) {
-        // 🪲 Bug: No delay
-        new Promise(resolve => setTimeout(resolve, 1000));
+        // Log the current direction
         console.log(`Navigating: ${direction.step}`);
+        // Add a delay of 1 second before navigating to the next step
+        await new Promise(resolve => setTimeout(resolve, 1000));
     }
+    // Return the completion message
     return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
 }
-
